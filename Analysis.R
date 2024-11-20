@@ -8,26 +8,28 @@ wine <- read.csv("winequality-white.csv", header = TRUE, sep = ";")
 
 View(wine) # viewing data set in another window
 
-# plotting the histogram
-
-hist(wine$quality, main = "Histogram of Wine Quality", xlab = "Quality", col = "lightblue", border = "black")
-
-#plotting the bell curve suggesting not normally distributed
-
-lines(density(wine$quality), col = "red", lwd = 2)
-
-# Sharpiro test to check if the distribution is normal or not
-
-shapiro.test(wine$quality)
-
 # calculating mean to divide the alcohol into subclasess
 mean_alcohol <- mean(wine$alcohol)
 
 # division of two sub classes based on mean // "low" and "High" categories
 wine$alcohol_class <- ifelse(wine$alcohol <= mean_alcohol, "Low", "High")
 
+#showing first two rows of the dataset
+head(wine,2)
+
+
+
+# plotting the histogram
+
+hist(wine$quality, main = "Histogram of Wine Quality", xlab = "Quality", col = "lightblue", border = "black", freq = TRUE)
+
+# Plotting the  normal bell curve
+mean_quality <- mean(wine$quality)
+sd_quality <- sd(wine$quality)
+x_values <- seq(min(wine$quality), max(wine$quality), length.out = 100)
+normal_curve <- dnorm(x_values, mean = mean_quality, sd = sd_quality)
+lines(x_values, normal_curve * length(wine$quality) * diff(hist(wine$quality, plot = FALSE)$mids)[1], col = "red", lwd = 2, lty = 2)
+
 #box plot of the two sub classes in relation to wine quality
 boxplot(wine$quality ~ wine$alcohol_class, data = wine, xlab = "alcohol_class", ylab = "Wine_quality", main = "Wine Quality Based on Class")
 
-#Wilcox test to check difference in means 
-wilcox.test(wine$quality ~ wine$alcohol_class)
