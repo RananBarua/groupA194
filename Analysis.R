@@ -21,7 +21,7 @@ head(wine,2)
 
 # plotting the histogram
 
-hist(wine$quality, main = "Histogram of Wine Quality", xlab = "Quality", col = "lightblue", border = "black", freq = TRUE)
+hist(wine$quality, main = "Histogram of Wine Quality", xlab = "Wine Quality(1-10)", ylab="Frequency", col = "lightblue", border = "black", freq = TRUE)
 
 # Plotting the  normal bell curve
 mean_quality <- mean(wine$quality)
