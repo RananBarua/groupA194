@@ -33,6 +33,10 @@ lines(x_values, normal_curve * length(wine$quality) * diff(hist(wine$quality, pl
 #box plot of the two sub classes in relation to wine quality
 boxplot(wine$quality ~ wine$alcohol_class, data = wine, xlab = "alcohol_class", ylab = "Wine_quality", main = "Wine Quality Based on Class")
 
+# Performing a t-test to compare the means of the two classes
+t_test_result <- t.test(wine$quality ~ wine$alcohol_class)
+print(t_test_result)
+
 #Wilcoxon test to reject or accept the null hypothesis 
 wilcox_test <- wilcox.test(wine$quality ~ wine$alcohol_class, data = wine)
 print(wilcox_test)
