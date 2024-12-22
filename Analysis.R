@@ -31,7 +31,7 @@ normal_curve <- dnorm(x_values, mean = mean_quality, sd = sd_quality)
 lines(x_values, normal_curve * length(wine$quality) * diff(hist(wine$quality, plot = FALSE)$mids)[1], col = "red", lwd = 2, lty = 2)
 
 #box plot of the two sub classes in relation to wine quality
-boxplot(wine$quality ~ wine$alcohol_class, data = wine, xlab = "alcohol_class", ylab = "Wine_quality", main = "Wine Quality Based on Class")
+boxplot(wine$quality ~ wine$alcohol_class, data = wine, xlab = "Alcohol Level", ylab = "Wine quality(1-10)", main = "Wine Quality Based on Alcohol Level")
 
 # Performing a t-test to compare the means of the two classes
 t_test_result <- t.test(wine$quality ~ wine$alcohol_class)
